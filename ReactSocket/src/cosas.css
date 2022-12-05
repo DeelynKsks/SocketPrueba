@@ -1,0 +1,6 @@
+#centrar{
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    left: calc(50% - 150px);
+}
