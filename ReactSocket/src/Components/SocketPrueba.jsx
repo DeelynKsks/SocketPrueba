@@ -4,10 +4,7 @@ function SocketPrueba() {
     const socket = io('http://localhost:7000')
 
     const [ msg, setMsg] = useState('')
-    const [ mensajes, setMensajes] = useState([{
-      body: "Prueba de Socket",
-      de: "Usuario de Prueba N°1"
-    }])
+    const [ mensajes, setMensajes] = useState([])
     useEffect(() => {
       const recibirMensaje = (msg) => setMensajes([msg, ...mensajes]);
       socket.on('mensaje', recibirMensaje)
@@ -27,17 +24,18 @@ function SocketPrueba() {
       setMsg('')
     }
   return (
-    <div className='btn btn-light' id='centrar'>
+    <div className='btn btn-light h-75 overflow-auto' id='centrar'>
         <form onSubmit={HandleSubmit}>
           <br />
-          <input className='form-control' type="text" onChange={(e)=>{setMsg(e.target.value)}} value={msg}/>
+          <input className='form-control' type="text" onChange={(e)=>{setMsg(e.target.value)}} value={msg}/><br />
           <button className='btn btn-dark' type='submit'>Enviar</button>
+        </form>
+          <br />
           {mensajes.map((msg, index) => (
-            <div key={index}>
-              <p>{msg.de}: {msg.body}</p>
+            <div key={index} className={(msg.de == 'Yo')?"bg-success text-white":"bg-dark text-white"} id={(msg.de == 'Yo')?"yo":"otro"}>
+              <p>{(msg.de) == 'Yo'?msg.de:'Otro usuario'}: {msg.body}</p>
             </div>
           ))}
-        </form>
     </div>
   )
 }

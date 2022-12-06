@@ -1,6 +1,17 @@
 #centrar{
     position: absolute;
-    width: 300px;
+    width: 500px;
     height: 200px;
     left: calc(50% - 150px);
+}
+
+#yo{
+    width: 300px;
+    
+}
+
+#otro{
+    width: 300px;
+    position:sticky ;
+    left: 100%;
 }
